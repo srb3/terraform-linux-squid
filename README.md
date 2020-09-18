@@ -4,6 +4,9 @@ This module installs, configures and runs a squid proxy. Chef Habitat and Chef C
 #### Supported platform families:
  * Most Linux OS's
 
+
+#### Terraform Version
+This module should work with versions 0.12.x and 0.13.x of terraform
 ## Usage
 
 #### minimal:
@@ -11,7 +14,7 @@ This module installs, configures and runs a squid proxy. Chef Habitat and Chef C
 
 module "squid" {
   source           = "srb3/squid/linux"
-  version          = "0.0.1"
+  version          = "0.13.0"
   ips              = ["198.51.100.1"]
   instance_count   = 1
   user_name        = "centos" # for ssh
