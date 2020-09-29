@@ -1,21 +1,19 @@
 locals {
-  instance_count = var.instance_count
-  dna = [
-    for ip in var.ips :
-    {
-      "squid_wrapper" = {}
+  dna = {
+    "squid" = {
+      "ssl_ports"  = var.ssl_ports,
+      "safe_ports" = var.safe_ports,
+      "localnets" = var.localnets
     }
-  ]
+  }
 }
 
 module "squid" {
   source            = "srb3/effortless-bootstrap/chef"
-  version           = "0.0.17"
-  ips               = var.ips
-  instance_count    = local.instance_count
+  version           = "0.13.1"
+  ip                = var.ip
   user_name         = var.ssh_user_name
   user_private_key  = var.ssh_user_private_key
   config            = local.dna
   effortless_pkg    = var.squid_effortless_package
-  module_depends_on = var.module_depends_on
 }
